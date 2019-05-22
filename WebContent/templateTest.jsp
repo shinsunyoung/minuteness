@@ -14,12 +14,18 @@
 
 body {
 	background-color: #1FE9B7;
+
 }
 
 table{
 	width : 100%;
 	height : 100%;
 
+}
+
+#left{
+	text-align: center;
+	vertical-align: top;
 }
 
 </style>
@@ -45,7 +51,7 @@ table{
 </tr>
 
 <tr>
-	<td width="200">
+	<td width="300" id="left">
 		<jsp:include page="left.jsp" flush="false" />
 	</td>
 	<td>
