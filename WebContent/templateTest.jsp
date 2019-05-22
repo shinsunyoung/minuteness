@@ -4,7 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
 <title>Insert title here</title>
+
+<style>
+* {
+	font-family: 'Nanum Gothic';
+}
+
+body {
+	background-color: #1FE9B7;
+}
+
+table{
+	width : 100%;
+	height : 100%;
+
+}
+
+</style>
+
 </head>
 <body>
 
@@ -17,7 +36,7 @@
 
 %>
 
-<table width="800" border="1" cellpadding="2" cellspacing="0">
+<table width="800" cellpadding="2" cellspacing="0">
 
 <tr>
 	<td colspan="2">
