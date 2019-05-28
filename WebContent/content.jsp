@@ -24,23 +24,53 @@
 <title>미세미세 | HOME</title>
 
 <style>
+
 #container {
 	width: 100%;
-	height: 1000px;
+	height: 800px;
 	background-color: white;
 }
+
+h1 { 
+	color:black;
+	margin-left: 44%;
+}
+
+#showminutenss{
+	margin:0 auto;
+}
+
+#local{
+	background-color:white;
+}
+
+
+p{
+	font-size:15px;
+	color: white;
+}
+
 </style>
 
 </head>
 
 <body>
-	<div id="container">
+	<div id="container"><br>
+		
+		<pre>
+		
+		
+		</pre>
+		
+		<div id="showminutenss">
+		
 		<%
 		
 			response.setContentType("text/html; charset=utf-8");
 		
+		
 			String sido = "인천";
-			String gu = "계양구";
+			String gu = "서구";
 			
 			int minutess=0; // 미세먼지 농도 저장해놓을 곳
 
@@ -52,7 +82,7 @@
 			urlBuilder.append("?" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("25", "UTF-8"));
  			urlBuilder.append("&" + URLEncoder.encode("sidoName", "UTF-8") + "=" + URLEncoder.encode(sido, "UTF-8"));
  			urlBuilder.append("&" + URLEncoder.encode("searchCondition", "UTF-8") + "=" + URLEncoder.encode("DAILY", "UTF-8"));							
-			urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=");  
+			urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=J834632QleIYwupZYjL4XIKCe1iuffx2VSIcU5KBSYjkOXhiXXlpbFUGSEOSl%2BWF%2FzDUGzKlcUoei9ReziEgGQ%3D%3D");  
 
 			URL url = new URL(urlBuilder.toString());
 
@@ -95,17 +125,138 @@
 	        // 선택한 구의 미세먼지 농도 보기
 	        for( int idx=0; idx<cols.getLength(); idx++ ){
 	           if(cols.item(idx).getTextContent().equals(gu)){
-	        	  out.print(gu + "의 미세먼지는" + value.item(idx).getTextContent());
+	        	  
 	        	  minutess = Integer.parseInt(value.item(idx).getTextContent());
 	        	  break;
 	           }
 	        }
+	        
+	        %>
+	        
+	        <div id="local">
+	        	<br>
+				<h1> <%= minutess %> <small>( <%= sido %>, <%= gu %> )</small> </h1>
+				<br>
+	        </div>
+	        
+	        <pre>
+		
+		
+			</pre>
+		
+	        
+	        <%
 
-			if(minutess < 100){
+			if(minutess < 15){
 				%>
-				<p style="background-color:'red'; ">소풍을 나가셔요~~^^</p>
+				</div>
+				
+
+				
+				
+				<pre>
+				
+
+		
+		
+				</pre>
+				<center>
+				<img src="pic/face/best.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>최고 좋은</b>날입니다. 맑은 공기를 맘껏 마실 수 있는 날입니다!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#1976D3';
+				</script>
 				 <% 
-				 out.print("상쾌상쾌~");
+			}
+			else if(minutess < 30){
+				%>
+				<center>
+				<img src="pic/face/good.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>좋은</b>날입니다. 신선한 공기를 마셔보세요!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#1378BB';
+				</script>
+				 <% 
+			}
+			else if(minutess < 40){ // 40
+				%>
+				<center>
+				<img src="pic/face/somegood.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>양호</b>한 날입니다. 쾌적한 공기를 즐기세요!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#0098A6';
+				</script>
+				 <% 
+			}
+			
+			else if(minutess < 50){ // 50
+				%>
+				<center>
+				<img src="pic/face/soso.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>보통</b>인 날입니다.산책을 하셔도 괜찮습니다!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#398E3D';
+				</script>
+				 <% 
+			}
+			
+			else if(minutess < 75){ // 75
+				%>
+				<center>
+				<img src="pic/face/notgood.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>나쁨</b>인 날입니다. 외출 시 마스크를 권장합니다!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#F47F16';
+				</script>
+				 <% 
+			}
+			
+			else if(minutess < 100){ // 100
+				%>
+				<center>
+				<img src="pic/face/bad.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>상당히 나쁨</b>인 날입니다. 외출 시 마스크를 꼭 착용하세요!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#D84315';
+				</script>
+				 <% 
+			}
+			
+			else if(minutess < 150){ // 100
+				%>
+				<center>
+				<img src="pic/face/verybad.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>매우 나쁨</b>인 날입니다. 가급적 외출을 삼가하세요!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#C62827';
+				</script>
+				 <% 
+			}
+			else if(minutess < 300){ 
+				%>
+				<center>
+				<img src="pic/face/muchbad.PNG" width="250px">
+				<p>오늘은 미세먼지가 <b>최악</b>인 날입니다. 절대 외출하지 마세요!</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#212121';
+				</script>
+				 <% 
 			}
 
 			
