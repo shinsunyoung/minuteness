@@ -20,6 +20,7 @@
 <head>
 <link rel="stylesheet"
 	href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00491ff0245e2ce8398c94efed353af8"></script>
 <meta charset="UTF-8">
 <title>미세미세 | HOME</title>
 
@@ -64,13 +65,48 @@ p{
 		
 		<div id="showminutenss">
 		
+		<div id="map" style="width:200px;height:100px;">또이또이</div>
+		
+
+		
+		<script>
+		
+			var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
+		
+			var latitude;
+			var longitude
+			
+			
+ 			navigator.geolocation.getCurrentPosition(function(pos) {
+			    latitude = pos.coords.latitude;
+			    longitude = pos.coords.longitude;
+			});
+			
+			var container = document.getElementById('map');
+			var options = {
+				center: new daum.maps.LatLng(33.450701, 126.570667),
+				level: 3
+			};
+			
+			
+/* 			var container = document.getElementById('map');
+			var options = {
+				center: new daum.maps.LatLng(latitude, longitude),
+				level: 3
+			};
+ */
+			var map = new daum.maps.Map(container, options);
+			
+		</script>
+
+		
 		<%
 		
 			response.setContentType("text/html; charset=utf-8");
 		
 		
-			String sido = "인천";
-			String gu = "서구";
+			String sido = "서울";
+			String gu = "관악구";
 			
 			int minutess=0; // 미세먼지 농도 저장해놓을 곳
 
@@ -259,13 +295,7 @@ p{
 					container.style.background = '#212121';
 				</script>
 				 <% 
-			}
-
-			
-
-
-			
-			
+			}		
 
 		%>
 	</div>
