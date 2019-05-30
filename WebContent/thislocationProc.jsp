@@ -160,14 +160,11 @@ p{
 				%>
 				</div>
 				
-
-				
-				
 				<pre>
 				
 
 		
-		
+
 				</pre>
 				<center>
 				<img src="pic/face/best.PNG" width="250px">
@@ -275,16 +272,19 @@ p{
 		<script>
 			
 			var latitude;
-			var longitude
+			var longitude;
 			
-				navigator.geolocation.getCurrentPosition(function(pos) {
+			navigator.geolocation.getCurrentPosition(function(pos) {
 			    latitude = pos.coords.latitude;
 			    longitude = pos.coords.longitude;
+				alert("헤이헤이" + latitude + "," + longitude);
 			});
 		
 		
 			// 카카오 다음 api
 			var container = document.getElementById('map');
+			
+
 			
 		
 			var options = {
