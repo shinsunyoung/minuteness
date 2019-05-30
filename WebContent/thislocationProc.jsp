@@ -20,7 +20,7 @@
 <head>
 <link rel="stylesheet"
 	href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00491ff0245e2ce8398c94efed353af8"></script>
+
 <meta charset="UTF-8">
 <title>미세미세 | HOME</title>
 
@@ -28,7 +28,7 @@
 
 #container {
 	width: 100%;
-	height: 800px;
+	height: 900px;
 	background-color: white;
 }
 
@@ -64,40 +64,11 @@ p{
 		</pre>
 		
 		<div id="showminutenss">
-		
-		<div id="map" style="width:200px;height:100px;">또이또이</div>
-		
 
 		
-		<script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00491ff0245e2ce8398c94efed353af8"></script>
 		
-			var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
-		
-			var latitude;
-			var longitude
-			
-			
- 			navigator.geolocation.getCurrentPosition(function(pos) {
-			    latitude = pos.coords.latitude;
-			    longitude = pos.coords.longitude;
-			});
-			
-			var container = document.getElementById('map');
-			var options = {
-				center: new daum.maps.LatLng(33.450701, 126.570667),
-				level: 3
-			};
-			
-			
-/* 			var container = document.getElementById('map');
-			var options = {
-				center: new daum.maps.LatLng(latitude, longitude),
-				level: 3
-			};
- */
-			var map = new daum.maps.Map(container, options);
-			
-		</script>
+
 
 		
 		<%
@@ -298,6 +269,35 @@ p{
 			}		
 
 		%>
+		<br>
+		<center><div id="map" style="width:400px;height:200px;"></div></center>
+		
+		<script>
+			
+			var latitude;
+			var longitude
+			
+				navigator.geolocation.getCurrentPosition(function(pos) {
+			    latitude = pos.coords.latitude;
+			    longitude = pos.coords.longitude;
+			});
+		
+		
+			// 카카오 다음 api
+			var container = document.getElementById('map');
+			
+		
+			var options = {
+				center: new daum.maps.LatLng(latitude,longitude),
+				level: 3
+			};
+			
+			
+			var map = new daum.maps.Map(container, options);
+			
+			
+			
+		</script>
 	</div>
 </body>
 </html>
