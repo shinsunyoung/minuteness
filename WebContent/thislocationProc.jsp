@@ -15,6 +15,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,7 @@
 
 #container {
 	width: 100%;
-	height: 900px;
+	height: 1000px;
 	background-color: white;
 }
 
@@ -56,33 +59,31 @@ p{
 </head>
 
 <body>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00491ff0245e2ce8398c94efed353af8&libraries=services"></script>
+		
 	<div id="container"><br>
 		
+		<div id="showminutenss">
+
 		<pre>
 		
 		
 		</pre>
 		
-		<div id="showminutenss">
-
-		
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00491ff0245e2ce8398c94efed353af8"></script>
-		
-
-
-		
 		<%
+			request.setCharacterEncoding("UTF-8");
+		 	response.setContentType("text/html;charset=UTF-8");
 		
-			response.setContentType("text/html; charset=utf-8");
+			// 주소에서 값 가져오기
+			String sido = request.getParameter("addr1");
+			String gu = request.getParameter("addr2");
 		
 		
-			String sido = "서울";
-			String gu = "관악구";
-			
 			int minutess=0; // 미세먼지 농도 저장해놓을 곳
 
 			
-			// URL 만들기
+			// URL 만들기 http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureSidoLIst?numOfRows=25&sidoName=서울&searchCondition=DAILY&ServiceKey=J834632QleIYwupZYjL4XIKCe1iuffx2VSIcU5KBSYjkOXhiXXlpbFUGSEOSl%2BWF%2FzDUGzKlcUoei9ReziEgGQ%3D%3D
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnMesureSidoLIst"); /*URL*/
 						
@@ -114,7 +115,7 @@ p{
 				sb.append(line);
 			} 
 			
-			//out.print(sb); 전체 다 보기
+			//out.print(sb); //전체 다 보기
 			
 			rd.close();
 			conn.disconnect();
@@ -162,8 +163,6 @@ p{
 				
 				<pre>
 				
-
-		
 
 				</pre>
 				<center>
@@ -266,36 +265,51 @@ p{
 			}		
 
 		%>
-		<br>
+		<pre>
+		
+		
+		
+		
+		</pre>
+		
 		<center><div id="map" style="width:400px;height:200px;"></div></center>
 		
 		<script>
 			
-			var latitude;
-			var longitude;
+			let latitude;
+			let longitude;
+			
+			// 맵 띄우기
+			var container = document.getElementById('map');
 			
 			navigator.geolocation.getCurrentPosition(function(pos) {
 			    latitude = pos.coords.latitude;
 			    longitude = pos.coords.longitude;
-				alert("헤이헤이" + latitude + "," + longitude);
-			});
-		
-		
-			// 카카오 다음 api
-			var container = document.getElementById('map');
-			
+			    
+				var options = {
+						center: new daum.maps.LatLng(latitude,longitude),
+						level: 3
+					};
+				
+				var map = new daum.maps.Map(container, options);
+				
+				// 위도경도 - > 주소 변경
+				var geocoder = new daum.maps.services.Geocoder();
 
-			
-		
-			var options = {
-				center: new daum.maps.LatLng(latitude,longitude),
-				level: 3
-			};
-			
-			
-			var map = new daum.maps.Map(container, options);
-			
-			
+				var coord = new daum.maps.LatLng(latitude,longitude);
+				
+				var callback = function(result, status) {
+				    if (status === daum.maps.services.Status.OK) {
+				        console.log(result[0].address.region_1depth_name +' ' + result[0].address.region_2depth_name);
+				    }
+				    else {
+				    	console.log("error : 위도경도 -> 주소 변경 ");
+				    }
+				};
+
+				geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+				
+			});
 			
 		</script>
 	</div>

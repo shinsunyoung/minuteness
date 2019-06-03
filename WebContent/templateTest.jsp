@@ -51,19 +51,13 @@ table{
 </tr>
 
 <tr>
-	<td width="300" id="left">
-		<jsp:include page="left.jsp" flush="false" />
-	</td>
+
 	<td>
 		<jsp:include page="<%= contentPage %>" flush="false" />
 	</td>
 </tr>
 
-<tr>
-	<td colspan="2">
-		<jsp:include page="bottom.jsp" flush="false" />
-	</td>
-</tr>
+
 
 
 </table>
