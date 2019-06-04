@@ -156,8 +156,28 @@ p{
 		
 	        
 	        <%
+	        
+	        // 미세먼지별 그림과 글씨가 다르게 보이게 한다.
 
-			if(minutess < 15){
+	        if(minutess == 0){
+				%>
+				</div>
+				
+				<pre>
+				
+
+				</pre>
+				<center>
+				<img src="pic/face/dontknow.png" width="150px">
+				<p>위치를 알 수 없습니다. 위치를 확인하고 다시 시도해주세요.</p>
+				</center>
+				<script>
+					var container = document.getElementById("container");
+					container.style.background = '#808080';
+				</script>
+				 <% 
+			}
+	        else if(minutess < 15){
 				%>
 				</div>
 				
@@ -272,7 +292,9 @@ p{
 		
 		</pre>
 		
-		<center><div id="map" style="width:400px;height:200px;"></div></center>
+		<center><div id="map" style="width:400px;height:200px;"></div>
+		<p>현재위치를 표시하고 있습니다.</p></center>
+		
 		
 		<script>
 			

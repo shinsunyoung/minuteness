@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>미세미세 | 회원가입</title>
 </head>
 <body>
 
@@ -25,10 +25,14 @@
 	String filepath = application.getRealPath("/WEB-INF/user/"+filename);
 	writer = new PrintWriter(filepath);
 	writer.printf("%s\n", password);
+
 	
-	out.println("회원 정보가 저장되었습니다.");
-	out.println("id : " + id);
-	out.println("password : " + password);
+	%> 
+	<script>
+		alert("회원가입을 축하합니다!");
+	</script>
+	
+	<%
 	
 	
 	writer.flush();
@@ -36,7 +40,7 @@
 
 %>
 
-<meta http-equiv="refresh" content="2;url=main.jsp">
+<meta http-equiv="refresh" content="1;url=main.jsp">
 
 </body>
 </html>

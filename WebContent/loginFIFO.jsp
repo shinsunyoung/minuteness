@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인</title>
+<title>미세미세 | 로그인</title>
 </head>
 <body>
  <%

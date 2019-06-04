@@ -21,9 +21,6 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=utf-8");
 
-	out.println(session.getAttribute("id"));
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -39,6 +36,7 @@
 	width: 100%;
 	height: 800px;
 	background-image: url("pic/background.jpg");
+	background-size: cover;
 	
 }
 
@@ -80,9 +78,6 @@ p{
 
 <body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=00491ff0245e2ce8398c94efed353af8&libraries=services"></script>
-	
-			
-
 	
 	<div id="container"><br>
 		
@@ -130,11 +125,28 @@ p{
 				location.href = "thislocation.jsp?addr1="+addr1+"&addr2="+addr2;
 			}
 			
+
+			//[ 즐겨찾기 ]를 눌렀을 때, 로그인이 되어있지 않은 상태면 알림창이 뜨고, 로그인이 되어있으면 페이지를 이동하게 한다.
+			function loginstatus(){ 
+			    <%
+			    if(session.getAttribute("id") == null){
+			    	%> alert("로그인 후 이용해주세요!"); <%
+			    }
+			    else{
+			    	%> location.href = "favorites.jsp"; <%
+			    }
+			    
+			    %>
+			}
+
+
+			
 			
 		</script>
+			
 		
 		<a href="#" onclick="gothislocation()"  ><img src="pic/letsgoyellow.png" id="yellowbtn"></a>
-		<a href="#" onclick="gothislocation()"  ><img src="pic/gotitgreen.png" id="greenbtn"></a><br>
+		<a href="#" onclick="loginstatus()"  ><img src="pic/gotitgreen.png" id="greenbtn"></a><br>
 		<br>
 
 		
